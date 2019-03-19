@@ -278,26 +278,6 @@ export default class TabBar<T: Route> extends React.Component<Props<T>, State> {
 
     return (
       <Animated.View style={[styles.tabBar, style]}>
-        <Animated.View
-          pointerEvents="none"
-          style={[
-            styles.indicatorContainer,
-            scrollEnabled
-              ? { width: tabBarWidth, transform: [{ translateX }] }
-              : null,
-          ]}
-        >
-          {this.props.renderIndicator({
-            position,
-            layout,
-            navigationState,
-            jumpTo,
-            addListener,
-            removeListener,
-            width: tabWidth,
-            style: indicatorStyle,
-          })}
-        </Animated.View>
         <View style={styles.scroll}>
           <Animated.ScrollView
             horizontal
@@ -362,6 +342,26 @@ export default class TabBar<T: Route> extends React.Component<Props<T>, State> {
             ))}
           </Animated.ScrollView>
         </View>
+        <Animated.View
+            pointerEvents="none"
+            style={[
+                styles.indicatorContainer,
+                scrollEnabled
+                ? { width: tabBarWidth, transform: [{ translateX }] }
+                : null,
+            ]}
+                            >
+            {this.props.renderIndicator({
+                position,
+                layout,
+                navigationState,
+                jumpTo,
+                addListener,
+                removeListener,
+                width: tabWidth,
+                style: indicatorStyle,
+            })}
+        </Animated.View>
       </Animated.View>
     );
   }
